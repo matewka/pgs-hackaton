@@ -1,2 +1,2 @@
 # pgs-hackaton
-PGS Hackaton
+PGS Hackaton!
