@@ -1,14 +1,22 @@
 var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-
 
 var metadata = {
     host: 'localhost'
-}
+};
 // Webpack Config
 var webpackConfig = {
+    devtool: 'cheap-module-eval-source-map',
+    cache: false,
+    debug: true,
+    output: {
+        path: './dist',
+        filename: '[name].bundle.js',
+        sourceMapFilename: '[name].map',
+        chunkFilename: '[id].chunk.js'
+    },
+
     metadata: metadata,
     entry: {
         'polyfills': './src/polyfills.ts',
@@ -16,11 +24,6 @@ var webpackConfig = {
         'app': './src/app.ts'
 
     },
-
-    output: {
-        path: './dist',
-    },
-
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({name: ['app', 'vendor', 'polyfills'], minChunks: Infinity}),
 
@@ -28,12 +31,22 @@ var webpackConfig = {
             template: 'src/index.html',
             chunksSortMode: 'dependency'
         }),
-        new CopyWebpackPlugin([{from: 'src/assets', to: './dist/assets'}]),
         new webpack.HotModuleReplacementPlugin()
 
     ],
 
     module: {
+        preLoaders: [
+            {
+                test: /\.js$/,
+                loader: 'source-map-loader',
+                exclude: [
+                    // these packages have problems with their sourcemaps
+                    path.join(__dirname, 'node_modules', 'rxjs'),
+                    path.join(__dirname, 'node_modules', '@angular2-material'),
+                ]
+            }
+        ],
         loaders: [
             // .ts files for TypeScript
             {test: /\.ts$/, loader: 'awesome-typescript-loader'},
@@ -53,65 +66,34 @@ var webpackConfig = {
                 test: /\.(sa|sc|c)ss$/,
                 loader: 'style!css?-url&-minimize&-import!autoprefixer-loader?browsers=last 2 versions!sass',
                 exclude: ['./node_modules']
-            }
-
-        ]
-    }
-
-};
-
-
-// Our Webpack Defaults
-var defaultConfig = {
-    devtool: 'cheap-module-eval-source-map',
-    cache: true,
-    debug: true,
-    output: {
-        filename: '[name].bundle.js',
-        sourceMapFilename: '[name].map',
-        chunkFilename: '[id].chunk.js'
-    },
-
-    module: {
-        preLoaders: [
+            },
             {
-                test: /\.js$/,
-                loader: 'source-map-loader',
-                exclude: [
-                    // these packages have problems with their sourcemaps
-                    path.join(__dirname, 'node_modules', 'rxjs'),
-                    path.join(__dirname, 'node_modules', '@angular2-material'),
-                ]
+                test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$$/,
+                loader: "file"
             }
+
         ],
         noParse: [
             path.join(__dirname, 'node_modules', 'zone.js', 'dist'),
             path.join(__dirname, 'node_modules', 'angular2', 'bundles')
         ]
     },
-
     resolve: {
         root: [path.join(__dirname, 'src')],
         extensions: ['', '.ts', '.js', '.sass', '.scss', '.css', '.json']
     },
 
     devServer: {
+        outputPath: 'dist',
         historyApiFallback: true,
         watchOptions: {aggregateTimeout: 300, poll: 500}
     },
 
-    node: {
-        global: 1,
-        crypto: 'empty',
-        module: 0,
-        Buffer: 0,
-        clearImmediate: 0,
-        setImmediate: 0
-    },
     sassLoader: {
         outputStyle: 'compressed'
     }
-}
 
-var webpackMerge = require('webpack-merge');
-module.exports = webpackMerge(defaultConfig, webpackConfig);
+};
+
+
+module.exports = webpackConfig;
