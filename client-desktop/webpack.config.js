@@ -3,15 +3,16 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var metadata = {
-    host:'localhost'
+    host: 'localhost'
 }
 // Webpack Config
 var webpackConfig = {
     metadata: metadata,
     entry: {
         'polyfills': './src/polyfills.ts',
-        'vendor':    './src/vendor.ts',
-        'app':       './src/app.ts',
+        'vendor': ['./src/vendor.ts'],
+        'app': './src/app.ts',
+
     },
 
     output: {
@@ -19,11 +20,11 @@ var webpackConfig = {
     },
 
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({ name: ['app', 'vendor', 'polyfills'], minChunks: Infinity }),
+        new webpack.optimize.CommonsChunkPlugin({name: ['app', 'vendor', 'polyfills'], minChunks: Infinity}),
 
         new HtmlWebpackPlugin({
             template: 'src/index.html',
-            chunksSortMode: 'none'
+            chunksSortMode: 'dependency'
         }),
 
 
@@ -32,13 +33,29 @@ var webpackConfig = {
     module: {
         loaders: [
             // .ts files for TypeScript
-            { test: /\.ts$/, loader: 'awesome-typescript-loader' },
+            {test: /\.ts$/, loader: 'awesome-typescript-loader'},
+            // Support for *.json files.
+            {test: /\.json$/, loader: 'json-loader'},
+
+            // Support for CSS as raw text
+            //{test: /\.css$/, loader: 'raw-loader'},
+
+            // support for .html as raw text
+            {test: /\.html$/, loader: 'raw-loader', exclude: ['./src/index.html']},
+
+            // support for sass imports
+            // add CSS rules to your document:
+            // `require("!style!css!sass!./file.scss");`
+            {
+                test: /\.(s)?css$/,
+                loader: 'style!css!autoprefixer-loader?browsers=last 2 versions!sass',
+                exclude: ['./node_modules']
+            }
 
         ]
     }
 
 };
-
 
 
 // Our Webpack Defaults
@@ -71,13 +88,13 @@ var defaultConfig = {
     },
 
     resolve: {
-        root: [ path.join(__dirname, 'src') ],
+        root: [path.join(__dirname, 'src')],
         extensions: ['', '.ts', '.js']
     },
 
     devServer: {
         historyApiFallback: true,
-        watchOptions: { aggregateTimeout: 300, poll: 1000 }
+        watchOptions: {aggregateTimeout: 300, poll: 1000}
     },
 
     node: {
