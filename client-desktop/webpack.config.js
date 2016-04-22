@@ -1,6 +1,8 @@
 var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+
 
 var metadata = {
     host: 'localhost'
@@ -11,7 +13,7 @@ var webpackConfig = {
     entry: {
         'polyfills': './src/polyfills.ts',
         'vendor': ['./src/vendor.ts'],
-        'app': './src/app.ts',
+        'app': './src/app.ts'
 
     },
 
@@ -26,7 +28,8 @@ var webpackConfig = {
             template: 'src/index.html',
             chunksSortMode: 'dependency'
         }),
-
+        new CopyWebpackPlugin([{from: 'src/assets', to: './dist/assets'}]),
+        new webpack.HotModuleReplacementPlugin()
 
     ],
 
@@ -47,8 +50,8 @@ var webpackConfig = {
             // add CSS rules to your document:
             // `require("!style!css!sass!./file.scss");`
             {
-                test: /\.(s)?css$/,
-                loader: 'style!css!autoprefixer-loader?browsers=last 2 versions!sass',
+                test: /\.(sa|sc|c)ss$/,
+                loader: 'style!css?-url&-minimize&-import!autoprefixer-loader?browsers=last 2 versions!sass',
                 exclude: ['./node_modules']
             }
 
@@ -89,12 +92,12 @@ var defaultConfig = {
 
     resolve: {
         root: [path.join(__dirname, 'src')],
-        extensions: ['', '.ts', '.js']
+        extensions: ['', '.ts', '.js', '.sass', '.scss', '.css', '.json']
     },
 
     devServer: {
         historyApiFallback: true,
-        watchOptions: {aggregateTimeout: 300, poll: 1000}
+        watchOptions: {aggregateTimeout: 300, poll: 500}
     },
 
     node: {
@@ -105,6 +108,9 @@ var defaultConfig = {
         clearImmediate: 0,
         setImmediate: 0
     },
+    sassLoader: {
+        outputStyle: 'compressed'
+    }
 }
 
 var webpackMerge = require('webpack-merge');

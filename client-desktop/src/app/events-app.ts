@@ -9,13 +9,9 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
     directives: [ROUTER_DIRECTIVES],
     templateUrl: 'app/events-app.html',
 })
-//@RouteConfig([
-//    { path: '/home',       component: Home,        name: 'Home', useAsDefault: true },
-//    { path: '/about',      component: About,       name: 'About' },
-//    { path: '/github/...', component: RepoBrowser, name: 'RepoBrowser' },
-//])
+@RouteConfig([])
 export class EventsApp {
 
-    constructor() {}
-
+    constructor() {
+    }
 }
