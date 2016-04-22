@@ -1,9 +1,13 @@
 var webpack = require('webpack');
 var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
+var metadata = {
+    host:'localhost'
+}
 // Webpack Config
 var webpackConfig = {
+    metadata: metadata,
     entry: {
         'polyfills': './src/polyfills.ts',
         'vendor':    './src/vendor.ts',
@@ -16,6 +20,13 @@ var webpackConfig = {
 
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({ name: ['app', 'vendor', 'polyfills'], minChunks: Infinity }),
+
+        new HtmlWebpackPlugin({
+            template: 'src/index.html',
+            chunksSortMode: 'none'
+        }),
+
+
     ],
 
     module: {
