@@ -1,0 +1,17 @@
+{
+  "name": "pgs-hackaton-server",
+  "version": "1.0.0",
+  "description": "Backend for PGS hackaton app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.13.4",
+    "mongoose": "^4.4.13",
+    "passport": "^0.3.2",
+    "passport-http": "^0.3.0"
+  }
+}
