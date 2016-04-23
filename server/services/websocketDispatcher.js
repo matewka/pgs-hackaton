@@ -20,7 +20,14 @@ class WebSocketDispatcher {
   }
 
   handleRequest(msg, ws, req) {
-    let data = JSON.parse(msg);
+
+    let data;
+    try {
+       data = JSON.parse(msg);
+    }
+    catch (e) {
+      return ws.send(JSON.stringify({error: 'Proper json please'}));
+    }
 
     if (!data.method) {
       return;
