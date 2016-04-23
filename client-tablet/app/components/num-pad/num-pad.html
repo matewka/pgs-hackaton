@@ -1,5 +1,7 @@
 <div class="NumPad">
   <num-pad-display [input]="value"></num-pad-display>
   <num-pad-keyboard (pressed)="onPressed($event)"></num-pad-keyboard>
-  <button (click)="onSubmit()">Wyślij</button>
+  <br/>
+  <button (click)="onBack()"><ion-icon name="backspace"></ion-icon></button>
+  <button (click)="onSubmit()" [disabled]="value.length < maxLength">Wyślij</button>
 </div>
