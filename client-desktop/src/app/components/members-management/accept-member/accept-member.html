@@ -1,0 +1,6 @@
+<button class="button is-primary"
+        (click)="acceptMember()"
+        [class.is-primary]="!isAccepted()"
+        [class.is-danger]="isAccepted()"
+        [textContent]="getButtonText()">
+</button>

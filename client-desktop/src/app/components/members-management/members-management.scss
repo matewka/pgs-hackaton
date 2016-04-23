@@ -14,6 +14,11 @@
     }
     td{
       border-bottom: 1px solid #eee;
+
+      &:last-child{
+        width: 100px;
+        text-align: right;
+      }
     }
     .row-success{
       background: #EBF7E4;
