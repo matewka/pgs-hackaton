@@ -6,7 +6,7 @@
     <h3>Aby się zarejestrować wystarczy podać kod</h3>
   </ion-segment>
   <ion-segment>
-    <num-pad></num-pad>
+    <num-pad (submit)="onCodeSubmitted($event)"></num-pad>
   </ion-segment>
   <ion-segment padding-top>
     <button light small (click)="onCodeMissing()">Nie mam kodu</button>
