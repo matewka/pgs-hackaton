@@ -8,8 +8,9 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "express": "^4.13.4",
+    "express-ws": "^2.0.0-rc.1",
     "mongoose": "^4.4.13",
     "passport": "^0.3.2",
     "passport-http": "^0.3.0"

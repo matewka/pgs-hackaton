@@ -9,6 +9,10 @@ go to `server` directory
 `npm install`
 `npm run start` will run Express server listening on port `3000`
 
+### Endpoints
+
+`/event/:event_id/member` -  lista uczestnikow, obecnie zwraca to co dostanie
+
 ## Client (desktop app in Angular2)
 # install dependencies
 go to `client-desktop` directory
