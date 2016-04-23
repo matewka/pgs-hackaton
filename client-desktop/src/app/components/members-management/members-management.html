@@ -12,7 +12,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="#member of members" [class.row-success]="isAccepted(member.status)">
+                <tr *ngFor="#member of members | async" [class.row-success]="isAccepted(member.status)">
                     <td>{{member.name}}</td>
                     <td>{{member.email}}</td>
                     <td>{{member.phone}}</td>
