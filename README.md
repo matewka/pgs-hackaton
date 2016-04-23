@@ -39,6 +39,25 @@ Pobranie member po kodzie:
    }
  }`
 
+Dodaawanie member do event:
+
+```
+{
+   "method": "addMember",
+   "params": {
+     "event_id": "571b3c2459ce5d5020a9af60",
+     "member" : {
+       "email": "bio@wp.pl",
+       "last_name": "Brzeczyszczykiewicz",
+       "first_name": "Bodzio",
+       "code": 5465,
+       "gifted": false,
+       "registered": true
+     }
+   }
+ }
+ ```
+
 ## Client (desktop app in Angular2)
 # install dependencies
 go to `client-desktop` directory

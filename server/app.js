@@ -43,10 +43,16 @@ webSocketDispatcher.register('registerByCode', (err, ws, params) => {
     return ws.send(JSON.stringify({error: 'code parameter not provided'}));
   }
 
-  if (code % 2 == 0)
-    ws.send(JSON.stringify({status: 'ok'}));
-  else
-    ws.send(JSON.stringify({status: 'failed'}));
+  MemberService.updateRegistered(code, true, (err, member) => {
+
+    if (err) {
+      ws.send(JSON.stringify(err));
+    }
+    if (!member) {
+      ws.send(JSON.stringify({status: 'failed', error: 'Member not found'}));
+    }
+    ws.send(JSON.stringify({status: 'ok', member: member}));
+  });
 });
 
 
@@ -59,7 +65,7 @@ webSocketDispatcher.register('retrieveByCode', (err, ws, params) => {
   }
 
   MemberService.getByCode(code, (err, member) => {
-
+    console.log(member);
     if (err) {
       ws.send(JSON.stringify(err));
     }
@@ -70,7 +76,28 @@ webSocketDispatcher.register('retrieveByCode', (err, ws, params) => {
 
     ws.send(JSON.stringify({status: 'ok', member: member}));
   });
+});
 
+webSocketDispatcher.register('addMember', (err, ws, params) => {
+
+  let event_id = params.event_id;
+  let member = params.member;
+
+  if (!event_id) {
+    return ws.send(JSON.stringify({error: 'event_id parameter not provided'}));
+  }
+
+  if (!member) {
+    return ws.send(JSON.stringify({error: 'event_id parameter not provided'}));
+  }
+
+  MemberService.createNew(event_id, member, (err, member) => {
+
+    if (err) {
+      ws.send(JSON.stringify(err));
+    }
+    ws.send(JSON.stringify({status: 'ok', member: member}));
+  });
 });
 
 
