@@ -1,6 +1,7 @@
 'use strict';
 
 const Event = require('../models/event');
+const Member = require('../models/member');
 
 
 const getByCode = function (code, callback) {
@@ -34,5 +35,25 @@ const updateRegistered = function (code, registered, callback) {
 };
 
 
+const createNew = function (event_id, memberModel, callback) {
+
+  Event.findOne(event_id, (err, event) => {
+
+    if (err) {
+      callback(err);
+    }
+
+    if (!event) {
+      callback({error: 'Event not found'});
+    }
+
+    let member = new Member(memberModel);
+    event.members.push(member);
+    event.save(callback);
+  });
+};
+
+
 module.exports.getByCode = getByCode;
+module.exports.createNew = createNew;
 module.exports.updateRegistered = updateRegistered;

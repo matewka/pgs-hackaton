@@ -9,7 +9,7 @@ const memberSchema = new Schema({
     last_name: {type: String, required: true},
     registered: {type: Boolean, default: false},
     gifted: {type: Boolean, default: false},
-    code: {type: Number, required: true}
+    code: {type: Number, required: true, index: {unique: true}}
 });
 
 const MemberModel = mongoose.model('Member', memberSchema);

@@ -76,7 +76,28 @@ webSocketDispatcher.register('retrieveByCode', (err, ws, params) => {
 
     ws.send(JSON.stringify({status: 'ok', member: member}));
   });
+});
 
+webSocketDispatcher.register('addMember', (err, ws, params) => {
+
+  let event_id = params.event_id;
+  let member = params.member;
+
+  if (!event_id) {
+    return ws.send(JSON.stringify({error: 'event_id parameter not provided'}));
+  }
+
+  if (!member) {
+    return ws.send(JSON.stringify({error: 'event_id parameter not provided'}));
+  }
+
+  MemberService.createNew(event_id, member, (err, member) => {
+
+    if (err) {
+      ws.send(JSON.stringify(err));
+    }
+    ws.send(JSON.stringify({status: 'ok', member: member}));
+  });
 });
 
 
