@@ -17,8 +17,6 @@ export class NumPad {
     if (this.value.length < this.maxLength) {
       this.value += value.toString();
     }
-
-    this.submit.emit(this.value);
   }
 
   onSubmit() {
