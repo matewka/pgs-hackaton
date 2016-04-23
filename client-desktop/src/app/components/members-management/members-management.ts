@@ -1,19 +1,20 @@
 import {Component, OnInit} from 'angular2/core';
 import {AppSettings} from '../../common/app-settings'
 import {SearchMember} from '../../components/search-member/search-member'
+import {MemberService} from '../../providers/member.service'
 
 @Component({
   selector: 'members-management',
   directives: [SearchMember],
+  providers: [MemberService],
   templateUrl: 'app/components/members-management/members-management.html',
-  styleUrls: ['app/components/members-management/members-management.scss']
+  styles: [require('./members-management.scss')]
 })
 
 export class MembersManagement implements OnInit {
-  members:any;
+  members: any;
 
-  constructor() {
-  }
+  constructor(private _memberService: MemberService) {}
 
   ngOnInit() {
     this.getList();
@@ -31,33 +32,8 @@ export class MembersManagement implements OnInit {
 
     member.status = statuses[member.status];
   }
-
+  
   getList() {
-    this.members = [
-      {
-        "name": "Ivan Disapierd",
-        "email": "mosssampson@gracker.com",
-        "phone": "+1 (834) 524-2682",
-        "consent": false,
-        "status": "accepted",
-        "registered": "2014-10-28T12:39:38 -01:00",
-        "technologies": [
-          "Javascript",
-          "PHP"
-        ]
-      },
-      {
-        "name": "Crisitna Pitolina",
-        "email": "deliawooten@gracker.com",
-        "phone": "+1 (923) 578-2242",
-        "consent": true,
-        "status": "not accepted",
-        "registered": "2015-10-13T04:18:54 -02:00",
-        "technologies": [
-          "Javascript",
-          "PHP"
-        ]
-      }
-    ]
+    this.members = this._memberService.getMembers();
   }
 }

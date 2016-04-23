@@ -10,7 +10,8 @@ import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
   styleUrls: ['app/components/events-app/events-app.scss']
 })
 @RouteConfig([
-  {name: 'ConfirmPackage', path: '/pack-admin', component: PackAdmin,useAsDefault:true}
+  {name: 'ConfirmPackage', path: '/pack-admin', component: PackAdmin},
+  {name: 'MembersManagement', path: '/hr-admin', component: MembersManagement, useAsDefault: true}
 ])
 export class EventsApp {
 
