@@ -43,10 +43,16 @@ webSocketDispatcher.register('registerByCode', (err, ws, params) => {
     return ws.send(JSON.stringify({error: 'code parameter not provided'}));
   }
 
-  if (code % 2 == 0)
-    ws.send(JSON.stringify({status: 'ok'}));
-  else
-    ws.send(JSON.stringify({status: 'failed'}));
+  MemberService.updateRegistered(code, true, (err, member) => {
+
+    if (err) {
+      ws.send(JSON.stringify(err));
+    }
+    if (!member) {
+      ws.send(JSON.stringify({status: 'failed', error: 'Member not found'}));
+    }
+    ws.send(JSON.stringify({status: 'ok', member: member}));
+  });
 });
 
 
@@ -59,7 +65,7 @@ webSocketDispatcher.register('retrieveByCode', (err, ws, params) => {
   }
 
   MemberService.getByCode(code, (err, member) => {
-
+    console.log(member);
     if (err) {
       ws.send(JSON.stringify(err));
     }
