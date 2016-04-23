@@ -1,15 +1,17 @@
 <div class="PackAdmin container">
-  <div class="columns PackageRow" *ngFor="#member of members | async;#i=index">
-    <div class="column"[textContent]="i + 1">
-    </div>
-    <div class="column is-two-thirds-desktop">
-      <span [textContent]="member.first_name"></span>
-      <span [textContent]="member.last_name"></span>
-    </div>
-    <div class="column">
+  <div class="PackageRow" *ngFor="#member of members | async ;#i=index">
+    <div *ngIf="!member.gifted" class="columns"><!-- this is ugly, use custom pipe -->
+      <div class="column" [textContent]="i + 1">
+      </div>
+      <div class="column is-two-thirds-desktop">
+        <span [textContent]="member.first_name"></span>
+        <span [textContent]="member.last_name"></span>
+      </div>
+      <div class="column">
 
-      <confirm-package [member]="member"></confirm-package>
-    </div>
+        <confirm-package [member]="member"></confirm-package>
+      </div>
 
+    </div>
   </div>
 </div>

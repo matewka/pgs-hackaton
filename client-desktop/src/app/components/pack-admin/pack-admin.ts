@@ -14,9 +14,8 @@ import {MemberService} from '../../providers/member.service';
 
 export class PackAdmin implements OnInit {
   members:any;
-  currentMember:any;
 
-  constructor(private _memberService: MemberService) {
+  constructor(private _memberService:MemberService) {
   }
 
   ngOnInit() {
@@ -26,9 +25,4 @@ export class PackAdmin implements OnInit {
   getList() {
     this.members = this._memberService.getMembers();
   }
-  revertCurrentPackage(){
-    console.log("reverted");
-  }
-
-
 }
