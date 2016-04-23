@@ -10,6 +10,7 @@ import {AppSettings} from '../../../common/app-settings'
 export class AcceptMember {
   member: any;
 
+
   isAccepted() {
     return this.member.status === AppSettings.MEMBER_STATUSES.ACCEPTED;
   }

@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component,  EventEmitter, Input, Output} from 'angular2/core';
 
 @Component({
   selector: 'search-member',
@@ -7,7 +7,15 @@ import {Component} from 'angular2/core';
 })
 
 export class SearchMember {
+  @Output() changed: EventEmitter<string>;
+  filter: string;
 
   constructor() {
+    this.changed = new EventEmitter();
+  }
+  
+  filterChanged(event: any){
+    event.preventDefault();
+    this.changed.emit(this.filter);
   }
 }

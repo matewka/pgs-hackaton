@@ -1,6 +1,6 @@
 <div class="container">
     <div class="Members">
-        <search-member></search-member>
+        <search-member (changed)="filterChanged($event)"></search-member>
         <table>
             <thead>
                 <tr>
@@ -12,7 +12,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="#member of members | async" [class.row-success]="isAccepted(member.status)">
+                <tr *ngFor="#member of filteredMembers" [class.row-success]="isAccepted(member.status)">
                     <td>{{member.name}}</td>
                     <td>{{member.email}}</td>
                     <td>{{member.phone}}</td>

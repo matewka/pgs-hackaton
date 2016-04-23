@@ -1,3 +1,7 @@
 <div class="Search">
-    <input type="text" class="input is-large" placeholder="Search">
+  <input type="text"
+         class="input is-large"
+         placeholder="Search"
+         [(ngModel)]="filter"
+         (keyup)="filterChanged($event)">
 </div>
