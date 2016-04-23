@@ -11,9 +11,24 @@ go to `server` directory
 
 ### Endpoints
 
-`/event` -  lista eventow
+Jeden endpoint `ws://adres_ip:3000/`
 
-`/event/:event_id` -  detale eventu, zawiera members z listą uczestników
+### Zapytania
+
+List eventów:
+
+`{
+  "method": "getEvents"
+}`
+
+Szczegóły eventu:
+
+`{
+  "method": "getEvent",
+  "params": {
+    "id" : "571b3c2459ce5d5020a9af60"
+  }
+}`
 
 ## Client (desktop app in Angular2)
 # install dependencies
