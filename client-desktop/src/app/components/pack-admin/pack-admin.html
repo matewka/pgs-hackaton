@@ -1,4 +1,7 @@
 <div class="PackAdmin container">
+  <header class="PackAdmin-header">
+    <h1 class="title is-3">Potwierdź odbiór pakietów powitalnych</h1>
+  </header>
   <div class="PackageRow" *ngFor="#member of members | async ;#i=index">
     <div *ngIf="!member.gifted" class="columns"><!-- this is ugly, use custom pipe -->
       <div class="column" [textContent]="i + 1">
@@ -8,10 +11,13 @@
         <span [textContent]="member.last_name"></span>
       </div>
       <div class="column">
-
-        <confirm-package [member]="member"></confirm-package>
+        <span [textContent]="member.code"></span>
+      </div>
+      <div class="column">
+        <confirm-package [member]="member" (confirmed)="onConfirm($event)"></confirm-package>
       </div>
 
     </div>
   </div>
+  <revert-package [member]="lastMember" [enabled]="revertActive" (reverted)="onRevert($event)" (disabled)="disableRevert($event)"></revert-package>
 </div>

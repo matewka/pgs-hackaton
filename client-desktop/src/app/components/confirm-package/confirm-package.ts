@@ -1,15 +1,16 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit, EventEmitter} from 'angular2/core';
 
 @Component({
   selector: 'confirm-package',
   templateUrl: 'app/components/confirm-package/confirm-package.html',
   styles: [require('./confirm-package.scss')],
-  inputs:['member']
+  inputs:['member'],
+  outputs:['confirmed']
 })
 
 export class ConfirmPackage implements OnInit {
-  member:any;
-
+  member: any;
+  confirmed = new EventEmitter<any>();
 
   constructor() {
   }
@@ -17,8 +18,8 @@ export class ConfirmPackage implements OnInit {
   ngOnInit() {
 
   }
-  confirmPackage(){
-    this.member.gifted = true;
+  confirm(){
+    this.confirmed.emit(this.member);
   }
 
 

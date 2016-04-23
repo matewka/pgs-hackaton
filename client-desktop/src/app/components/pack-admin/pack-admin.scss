@@ -1,6 +1,30 @@
-.PackageRow .column{
+.PackAdmin{
+  display: flex;
+  flex-flow:column nowrap;
+  height:100vh;
+  justify-content:flex-start;
+  align-content:center;
+}
+.PackAdmin-header{
+  text-align: center;
+  text-transform: uppercase;
+  padding:1em;
+}
+.PackageRow .columns{
   font-size:22px;
-  height:48px;
+  min-height:48px;
   line-height:48px;
-  margin:0 0 10px;
+  margin:0 0 30px;
+}
+.PackageRow{
+  &:first-of-type {
+    .columns{
+
+    flex-grow:0;
+    font-size:2em;
+      align-content:center;
+    }
+  }
+  flex-grow:0;
+
 }
