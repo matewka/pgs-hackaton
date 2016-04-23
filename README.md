@@ -11,7 +11,9 @@ go to `server` directory
 
 ### Endpoints
 
-`/event/:event_id/member` -  lista uczestnikow, obecnie zwraca to co dostanie
+`/event` -  lista eventow
+
+`/event/:event_id` -  detale eventu, zawiera members z listą uczestników
 
 ## Client (desktop app in Angular2)
 # install dependencies

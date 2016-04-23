@@ -63,10 +63,15 @@ var webpackConfig = {
             // add CSS rules to your document:
             // `require("!style!css!sass!./file.scss");`
             {
-                test: /\.(sa|sc|c)ss$/,
+                test: /\.css$/,
                 loader: 'style!css?-url&-minimize&-import!autoprefixer-loader?browsers=last 2 versions!sass',
                 exclude: ['./node_modules']
             },
+          {
+            test: /\.scss$/,
+            loader: 'raw!autoprefixer-loader?browsers=last 2 versions!sass',
+            exclude: ['./node_modules']
+          },
             {
                 test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$$/,
                 loader: "file"

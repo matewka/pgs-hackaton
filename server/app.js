@@ -11,9 +11,9 @@ let port = process.env.port || config.express.port;
 
 require('express-ws')(app);
 
-const memberRoute = require('./routes/memberRoute');
+const eventRoute = require('./routes/eventRoute');
 
-app.use('/event/:event_id/', memberRoute);
+app.use('/event', eventRoute);
 
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
