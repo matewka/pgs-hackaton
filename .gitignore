@@ -3,4 +3,5 @@
 **/*/dist/
 **/*/npm-debug.log
 client-desktop/typings/*
+.idea
 
