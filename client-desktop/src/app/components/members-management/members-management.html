@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="Members">
+        <div class="Search">
+            <input type="text" class="input" placeholder="Search">
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Technologies</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="#member of members">
+                    <td>Ivan Disapierd</td>
+                    <td>mosssampson@gracker.com</td>
+                    <td>+1 (834) 524-2682</td>
+                    <td>Java, Javascript</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

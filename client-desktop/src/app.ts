@@ -3,7 +3,7 @@ import {provide} from 'angular2/core';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
 
-import {EventsApp} from './app/events-app';
+import {EventsApp} from './app/components/events-app/events-app';
 
 require('bulma/css/bulma.min.css');
 
