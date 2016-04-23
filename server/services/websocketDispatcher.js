@@ -63,7 +63,6 @@ class WebSocketDispatcher {
       isSync: false,
       callback: callback
     };
-    console.log(this.methods);
   }
 
   rpc() {

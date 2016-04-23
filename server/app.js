@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const config = require('./config.js');
 const WebSocketDispatcher = require('./services/websocketDispatcher');
 const EventService = require('./services/eventService');
+const MemberService = require('./services/memberService');
 
 const app = Express();
 
@@ -31,6 +32,45 @@ webSocketDispatcher.register('getEvent', (err, ws, params) => {
   EventService.getEvent(id, (err, events) => {
     ws.send(JSON.stringify(events));
   });
+});
+
+
+webSocketDispatcher.register('registerByCode', (err, ws, params) => {
+
+  let code = params.code;
+
+  if (!code) {
+    return ws.send(JSON.stringify({error: 'code parameter not provided'}));
+  }
+
+  if (code % 2 == 0)
+    ws.send(JSON.stringify({status: 'ok'}));
+  else
+    ws.send(JSON.stringify({status: 'failed'}));
+});
+
+
+webSocketDispatcher.register('retrieveByCode', (err, ws, params) => {
+
+  let code = params.code;
+
+  if (!code) {
+    return ws.send(JSON.stringify({error: 'code parameter not provided'}));
+  }
+
+  MemberService.getByCode(code, (err, member) => {
+
+    if (err) {
+      ws.send(JSON.stringify(err));
+    }
+
+    if (!member) {
+      ws.send(JSON.stringify({status: 'failed', error: 'Member not found'}));
+    }
+
+    ws.send(JSON.stringify({status: 'ok', member: member}));
+  });
+
 });
 
 

@@ -2,7 +2,6 @@
 
 const Event = require('../models/event');
 
-
 const getAll = function (callback) {
     callback = (typeof callback == 'function') ? callback : function () {};
 

@@ -30,6 +30,15 @@ Szczegóły eventu:
   }
 }`
 
+Pobranie member po kodzie:
+
+`{
+   "method": "retrieveByCode",
+   "params": {
+     "code" : 3133
+   }
+ }`
+
 ## Client (desktop app in Angular2)
 # install dependencies
 go to `client-desktop` directory
