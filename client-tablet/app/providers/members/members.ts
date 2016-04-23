@@ -5,9 +5,10 @@ import {Observable} from 'rxjs/Observable';
 export class Members {
   constructor() {}
 
-  getOneByCode(code:string) {
+  retrieveByCode(code:string) {
     return Observable.create((observer) => {
       observer.next({
+        "id": 123,
         "name": "Ivan",
         "surname": "Disapierd",
         "email": "mosssampson@gracker.com",
@@ -22,6 +23,13 @@ export class Members {
         ]
       });
     });
+  }
+
+  register(id) {
+    return Observable.create((observer) => {
+      observer.next(id);
+    });
+    console.log('registered', id);
   }
 
 }

@@ -9,17 +9,21 @@ import {NumPad} from '../../components/num-pad/numPad';
 })
 export class MainPage {
 
+  code: string;
+
   constructor(protected nav: Navigation, protected nc: NavController, protected members: Members) {}
 
   openConfirmation(user) {
     this.showAlert({
       title: 'Kod rejestracyjny pasuje do:',
-      message: user.name,
+      message: user.name + ' ' + user.surname.charAt(0) + '.',
       buttons: [
         {
           text: 'Tak, to ja',
           handler: () => {
-            this.nav.openMainPage();
+            this.members.register(user.id).subscribe(() => {
+              this.showBoxAlert();
+            });
           }
         },
         {
@@ -28,7 +32,6 @@ export class MainPage {
             this.showStaffAlert('Zły kod?', [this.getStaffButton()]);
           }
         }
-
       ]
     });
   }
@@ -44,15 +47,13 @@ export class MainPage {
   }
 
   onCodeSubmitted(code) {
-    console.log(Members, Navigation);
-    this.members.getOneByCode(code).subscribe(result => {
-      console.log('result', result);
+    this.members.retrieveByCode(code).subscribe(result => {
       this.openConfirmation(result);
     });
   }
 
   onPageDidEnter() {
-    // reset user data
+    this.code = '';
   }
 
   private showStaffAlert(reason, buttons) {
@@ -60,6 +61,14 @@ export class MainPage {
       title: reason,
       message: 'Idź do kogoś z obsługi',
       buttons: buttons
+    });
+  }
+
+  private showBoxAlert() {
+    this.showAlert({
+      title: 'Rejestracja udana!',
+      message: 'Zapraszamy po paczkę',
+      buttons: [this.getStaffButton()]
     });
   }
 

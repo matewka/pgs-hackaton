@@ -1,12 +1,12 @@
-<ion-content padding class="MainPage">
+<ion-content padding class="MainPage" text-center="">
   <ion-segment class="MainPage-header">
     <h2>Witaj w automatycznej rejestracji!</h2>
   </ion-segment>
   <ion-segment>
-    <h3>Aby się zarejestrować wystarczy podać kod</h3>
+    <p>Aby się zarejestrować wystarczy podać kod</p>
   </ion-segment>
   <ion-segment>
-    <num-pad (submit)="onCodeSubmitted($event)"></num-pad>
+    <num-pad (submit)="onCodeSubmitted($event)" [maxLength]="4"></num-pad>
   </ion-segment>
   <ion-segment padding-top>
     <button light small (click)="onCodeMissing()">Nie mam kodu</button>
