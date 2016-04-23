@@ -6,6 +6,7 @@ import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2
 import {EventsApp} from './app/components/events-app/events-app';
 
 require('bulma/css/bulma.min.css');
+require('./app/styles/main.scss');
 
 
 bootstrap(EventsApp, [

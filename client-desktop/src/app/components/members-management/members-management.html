@@ -1,8 +1,6 @@
 <div class="container">
     <div class="Members">
-        <div class="Search">
-            <input type="text" class="input" placeholder="Search">
-        </div>
+        <search-member></search-member>
         <table>
             <thead>
                 <tr>
@@ -14,12 +12,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="#member of members">
-                    <td>Ivan Disapierd</td>
-                    <td>mosssampson@gracker.com</td>
-                    <td>+1 (834) 524-2682</td>
-                    <td>Java, Javascript</td>
-                    <td><input type="checkbox"></td>
+                <tr *ngFor="#member of members" [class.row-success]="isAccepted(member.status)">
+                    <td>{{member.name}}</td>
+                    <td>{{member.email}}</td>
+                    <td>{{member.phone}}</td>
+                    <td>
+                        <span *ngFor="#technology of member.technologies">
+                            {{technology}}
+                        </span>
+                    </td>
+                    <td><input type="checkbox" (click)="acceptMember(member)" [checked]="isAccepted(member.status)"></td>
                 </tr>
             </tbody>
         </table>
