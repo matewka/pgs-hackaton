@@ -1,16 +1,14 @@
 <div class="PackAdmin container">
-  <div class="columns PackageRow" [class.PackageRow--alternate]="i%2==0" *ngFor="#package of packages;#i=index">
+  <div class="columns PackageRow" *ngFor="#member of members | async;#i=index">
     <div class="column"[textContent]="i + 1">
     </div>
     <div class="column is-two-thirds-desktop">
-      <adress [textContent]="package.name"></adress>
-    </div>
-    <div class="column">
-      <adress [textContent]="package.pin"></adress>
+      <span [textContent]="member.first_name"></span>
+      <span [textContent]="member.last_name"></span>
     </div>
     <div class="column">
 
-      <confirm-package></confirm-package>
+      <confirm-package [member]="member"></confirm-package>
     </div>
 
   </div>

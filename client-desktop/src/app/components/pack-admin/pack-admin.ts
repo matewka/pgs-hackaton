@@ -1,17 +1,22 @@
 import {Component, OnInit} from 'angular2/core';
 import {ConfirmPackage} from '../confirm-package/confirm-package';
+import {RevertPackage} from '../revert-package/revert-package';
+import {AppSettings} from '../../common/app-settings';
+import {MemberService} from '../../providers/member.service';
 
 @Component({
   selector: 'pack-admin',
-  directives: [ConfirmPackage],
+  directives: [ConfirmPackage, RevertPackage],
   templateUrl: 'app/components/pack-admin/pack-admin.html',
-  styles: [require('./pack-admin.scss')]
+  styles: [require('./pack-admin.scss')],
+  providers: [MemberService]
 })
 
 export class PackAdmin implements OnInit {
-  packages:any;
+  members:any;
+  currentMember:any;
 
-  constructor() {
+  constructor(private _memberService: MemberService) {
   }
 
   ngOnInit() {
@@ -19,21 +24,11 @@ export class PackAdmin implements OnInit {
   }
 
   getList() {
-    this.packages = [
-      {
-        "name": "Ivan Disapierd",
-        "pin": 1234
-      },
-      {
-        "name": "Crisitna Pitolina",
-        "pin": 1235
-      }
-    ]
+    this.members = this._memberService.getMembers();
+  }
+  revertCurrentPackage(){
+    console.log("reverted");
   }
 
-  confirmPackageReceived(userId){
-    console.log('confirmed');
-
-  }
 
 }
