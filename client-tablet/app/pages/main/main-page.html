@@ -1,5 +1,15 @@
-<ion-content padding class="page1">
-    <h2>Welcome to Ionic!</h2>
+<ion-content padding class="MainPage">
+    <ion-segment class="MainPage-header">
+        <h2>Witaj w automatycznej rejestracji!</h2>
+    </ion-segment>
+    <ion-segment>
+        <h3>Aby się zarejestrować wystarczy podać kod</h3>
+    </ion-segment>
+    <ion-segment>
+        <button light small (click)="onCodeMissing()">Nie mam kodu</button>
+        <num-pad></num-pad>
+    </ion-segment>
+    <ion-segment>
 
-    <num-pad></num-pad>
+    </ion-segment>
 </ion-content>
