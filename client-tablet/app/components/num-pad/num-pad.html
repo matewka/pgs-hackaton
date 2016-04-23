@@ -1,7 +1,7 @@
-<div class="NumPad">
+<div class="NumPad" text-center>
   <num-pad-display [input]="value"></num-pad-display>
   <num-pad-keyboard (pressed)="onPressed($event)"></num-pad-keyboard>
   <br/>
-  <button (click)="onBack()"><ion-icon name="backspace"></ion-icon></button>
-  <button (click)="onSubmit()" [disabled]="value.length < maxLength">Wyślij</button>
+  <button dark (click)="onBack()"><ion-icon name="backspace"></ion-icon></button>
+  <button secondary (click)="onSubmit()" [disabled]="value.length < maxLength">Wyślij</button>
 </div>
