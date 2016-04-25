@@ -38,6 +38,6 @@ export class MembersManagement implements OnInit {
   }
 
   filterChanged(searchText: string) {
-    this.filteredMembers = this._filterService.filter(searchText, ['email'], this.members)
+    this.filteredMembers = this._filterService.filter(searchText, ['first_name', 'last_name', 'email'], this.members)
   }
 }

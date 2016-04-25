@@ -13,7 +13,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="#member of filteredMembers" [class.row-success]="isAccepted(member.status)">
-                    <td>{{member.name}}</td>
+                    <td>{{member.first_name}} {{member.last_name}}</td>
                     <td>{{member.email}}</td>
                     <td>{{member.phone}}</td>
                     <td>
