@@ -1,23 +1,27 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit, EventEmitter} from 'angular2/core';
 
 @Component({
   selector: 'confirm-package',
   templateUrl: 'app/components/confirm-package/confirm-package.html',
-  styles: [require('./confirm-package.scss')]
+  styles: [require('./confirm-package.scss')],
+  inputs:['member'],
+  outputs:['confirmed']
 })
 
 export class ConfirmPackage implements OnInit {
-  packages:any;
+  member: any;
+  confirmed = new EventEmitter<any>();
 
   constructor() {
   }
 
   ngOnInit() {
-    this.getList();
-  }
-
-  getList() {
 
   }
+  confirm(){
+    this.confirmed.emit(this.member);
+  }
+
+
 
 }

@@ -1,10 +1,11 @@
 import {Page, Alert, NavController} from 'ionic-angular';
 import {Navigation, Members} from '../../providers/providers';
 import {NumPad} from '../../components/num-pad/numPad';
+import {Scanner} from '../../components/scanner/scanner';
 
 @Page({
   templateUrl: 'build/pages/main/main-page.html',
-  directives: [NumPad],
+  directives: [NumPad, Scanner],
   providers: [Navigation, Members]
 })
 export class MainPage {
