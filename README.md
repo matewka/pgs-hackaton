@@ -65,3 +65,10 @@ go to `client-desktop` directory
 `npm run start` will run webpack-dev-server with
 go to `localhost:4000` to view app
 
+## Tablet (tablet app in Ionic2)
+# install dependencies
+go to `client-tablet` directory
+`npm install` to install dependencies
+`npm install ionic@beta -g` to install global ionic package
+'ionic serve' will run application
+
