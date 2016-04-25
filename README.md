@@ -72,3 +72,6 @@ go to `client-tablet` directory
 `npm install ionic@beta -g` to install global ionic package
 'ionic serve' will run application
 
+
+![alt tag](views.png)
+
