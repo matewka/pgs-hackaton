@@ -1,0 +1,18 @@
+@import "../../../styles/variables";
+
+.MemberProgress-bar {
+  display: flex;
+  background-color: $color-gray;
+  flex-direction: row;
+  align-items: stretch;
+  height: 30px;
+}
+
+.MemberProgress-complete {
+  background-color: $color-pgs;
+  transition: all 0.3s;
+}
+
+.MemberProgress-uncomplete {
+
+}

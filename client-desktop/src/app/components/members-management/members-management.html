@@ -1,6 +1,7 @@
 <div class="container">
     <div class="Members">
         <search-member (changed)="filterChanged($event)"></search-member>
+        <member-progress [(members)]="members"></member-progress>
         <table>
             <thead>
                 <tr>
