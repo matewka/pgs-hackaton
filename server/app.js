@@ -100,6 +100,9 @@ webSocketDispatcher.register('addMember', (err, ws, params) => {
   });
 });
 
+if (config.dev.mockdata) {
+  require('./util/mockdata')();
+}
 
 app.use('/', webSocketDispatcher.rpc());
 

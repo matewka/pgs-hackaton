@@ -1,0 +1,40 @@
+[
+  {
+    "first_name": "Michał",
+    "last_name": "Miszczyszyn",
+    "email": "trolofgh@gracker.com",
+    "code": 4567
+  },
+  {
+    "first_name": "Ivan",
+    "last_name": "Disapierd",
+    "email": "abcdefgh@gracker.com",
+    "code": 1234
+  },
+  {
+    "first_name": "Krzesław",
+    "last_name": "Dunlap",
+    "email": "ssssssss@gracker.com",
+    "code": 5678
+  },
+  {
+    "first_name": "Hanna",
+    "last_name": "Popaczke",
+    "email": "zxcvbnm@gracker.com",
+    "code": 9009
+  },
+  {
+    "first_name": "Wojciech",
+    "last_name": "WGS",
+    "email": "tutiruti889@gracker.com",
+    "code": 4567
+  },
+  {
+    "first_name": "Michał",
+    "last_name": "Miszczyszyn",
+    "email": "hidethepain@gracker.com",
+    "code": 4567,
+    "gifted": false,
+    "registered": false
+  }
+]
