@@ -1,0 +1,15 @@
+.WebmasterView {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
+  justify-content: flex-start;
+  align-content: center;
+  background-color: #fff;
+  padding: 1em;
+}
+
+.Webmaster-header {
+  text-align: center;
+  text-transform: uppercase;
+  padding: 1em;
+}

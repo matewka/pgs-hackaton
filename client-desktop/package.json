@@ -8,7 +8,7 @@
     "postinstall": "npm run typings-install",
     "build": "node node_modules/webpack/bin/webpack.js --inline --colors --progress --display-error-details --display-cached",
     "watch": "npm run build -- --watch",
-    "server": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --colors --progress --display-error-details --display-cached --hot --port 4000  --content-base src",
+    "server": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --colors --progress --display-error-details --display-cached --hot --host 0.0.0.0 --port 4000 --content-base src",
     "start": "npm run server"
   },
   "author": "",
