@@ -1,0 +1,29 @@
+{
+  "name": "pgs-hackaton",
+  "version": "1.0.0",
+  "description": "PGS Hackaton!",
+  "main": "index.js",
+  "scripts": {
+    "prevagrant": "vagrant up",
+    "vagrant": "vagrant ssh -c",
+    "compose:kill": "docker-compose kill > /dev/null 2>&1",
+    "compose:rm": "docker-compose rm -f -v --all > /dev/null 2>&1",
+    "precompose:up": "npm run compose:kill && npm run compose:rm",
+    "compose:up": "docker-compose up",
+    "compose:up:d": "docker-compose up -d",
+    "db:docker": "npm run compose:up:d -- --build db",
+    "server:docker": "npm run compose:up:d -- --build server",
+    "db:vagrant": "npm run vagrant -- \"cd /hackaton && npm run db:docker\"",
+    "server:vagrant": "npm run vagrant -- \"cd /hackaton && npm run server:docker\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matewka/pgs-hackaton.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matewka/pgs-hackaton/issues"
+  },
+  "homepage": "https://github.com/matewka/pgs-hackaton#readme"
+}

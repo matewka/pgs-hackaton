@@ -1,0 +1,17 @@
+server:
+  build: ./server/
+  links:
+   - db
+  ports:
+   - "8000:8000"
+  volumes:
+   - ./server:/usr/src/app/
+  environment:
+   NODE_ENV: production
+   MONGO_URL: db:27017/
+   PORT: 8000
+db:
+  image: mongo:latest
+  restart: unless-stopped
+  ports:
+   - "27017:27017"
