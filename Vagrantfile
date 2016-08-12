@@ -27,7 +27,8 @@ Vagrant.configure("2") do |config|
   config.vm.define "pgs-fe-gda-hackaton-host" do |config|
       config.vm.box = "ubuntu/trusty64"
       # config.vm.network :private_network, ip: "10.0.0.10"
-      config.vm.network "forwarded_port", guest: 8000, host: 8080
+      config.vm.network "forwarded_port", guest: 8000, host: 8001
+      config.vm.network "forwarded_port", guest: 4000, host: 4001
       config.vm.provider "virtualbox" do |vb|
         vb.gui = false
         vb.memory = "2048"

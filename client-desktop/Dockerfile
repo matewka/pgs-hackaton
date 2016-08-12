@@ -1,15 +1,17 @@
-FROM node:argon
+FROM node:4
 
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Install app dependencies
-COPY package.json /usr/src/app/
+COPY *.json /usr/src/app/
 RUN npm install --quiet
 
 # Bundle app source
 COPY . /usr/src/app
 
-EXPOSE 8080 8000
-CMD npm run server
+EXPOSE 4000
+WORKDIR /usr/src/app
+RUN npm rebuild node-sass
+CMD npm start
