@@ -23,12 +23,14 @@ let mocks = function () {
           Event.find((e, a)=> {
             if (e) return console.error(e);
             eventId = a[0]._id;
+            console.log("EventId: %s",eventId);
           });
         }
       });
     } else {
       console.log('Mocks: Event exists');
       eventId = o[0]._id;
+      console.log("EventId: %s",eventId);
       if (!o[0].members || !o[0].members.length) {
         console.log('Mocks: Updating members only');
         Event.update({_id: eventId}, {members: members}, {}, (er, r)=> {
