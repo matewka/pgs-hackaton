@@ -10,7 +10,7 @@ export class MemberService {
       const dataStream = new $WebSocket(`ws://${config.host}:${config.port}/`, null, null);
       let collection = [];
 
-      dataStream.send(JSON.stringify({method: 'getEvent', params: {id: "57b5d27aaa8c131200d98236"}}));
+      dataStream.send(JSON.stringify({method: 'getFirstEvent'}));
 
       dataStream.onMessage((event) => {
         const selectedEvent = JSON.parse(event.data);

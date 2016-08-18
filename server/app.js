@@ -25,6 +25,14 @@ webSocketDispatcher.register('getEvents', (err, ws) => {
     ws.send(JSON.stringify(events));
   });
 });
+/* this is just for use with mocked event */
+webSocketDispatcher.register('getFirstEvent', (err, ws) => {
+  EventService.getAll((err, events) => {
+    EventService.getEvent(events[0]._id, (err, events) => {
+      ws.send(JSON.stringify(events));
+    });
+  });
+});
 
 
 webSocketDispatcher.register('getEvent', (err, ws, params) => {
