@@ -16,7 +16,9 @@ var webpackConfig = {
         sourceMapFilename: '[name].map',
         chunkFilename: '[id].chunk.js'
     },
-
+    watchOptions: {
+      poll: true
+    },
     metadata: metadata,
     entry: {
         'polyfills': './src/polyfills.ts',
@@ -85,7 +87,10 @@ var webpackConfig = {
     },
     resolve: {
         root: [path.join(__dirname, 'src')],
-        extensions: ['', '.ts', '.js', '.sass', '.scss', '.css', '.json']
+        extensions: ['', '.ts', '.js', '.sass', '.scss', '.css', '.json'],
+        alias:{
+          'config/server':getConfig('server')
+        }
     },
 
     devServer: {
@@ -100,5 +105,14 @@ var webpackConfig = {
 
 };
 
+function getConfig (configFile){
+  if (process.env.VIRTUALIZED) {
+    return path.join(__dirname,`config/vagrant.${configFile}.ts`)
+  } else {
+    return path.join(__dirname,`config/${configFile}.ts`)
+  }
 
+}
+
+console.log(__dirname)
 module.exports = webpackConfig;
