@@ -9,10 +9,15 @@ const MemberService = require('./services/memberService');
 
 const app = Express();
 
-mongoose.connect(config.mongodb.uri);
-let port = process.env.port || config.express.port;
+let port = process.env.PORT || config.express.port;
+let mongoUri = process.env.MONGO_URL || config.mongodb.uri;
+console.log("Server port:",port);
+console.log("Mongo URI:",mongoUri);
+
+mongoose.connect(mongoUri);
 
 let webSocketDispatcher = new WebSocketDispatcher(app);
+
 
 
 webSocketDispatcher.register('getEvents', (err, ws) => {
@@ -105,7 +110,11 @@ if (config.dev.mockdata) {
 }
 
 app.use('/', webSocketDispatcher.rpc());
+app.get('/tests', function(req, res) {
+  res.type('text/plain'); // set content-type
+  res.send('i am a beautiful butterfly'); // send text response
+});
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0',() => {
   console.log(`Server is listening on port ${port}`);
 });
