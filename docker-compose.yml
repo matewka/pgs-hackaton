@@ -6,23 +6,22 @@ server:
    - "8000:8000"
   volumes:
    - ./server:/usr/src/app/
+  restart: unless-stopped
   environment:
-   NODE_ENV: production
    MONGO_URL: db:27017/
    PORT: 8000
 desktop:
   build: ./client-desktop/
   links:
-   - db
    - server
   ports:
    - "4000:4000"
   volumes:
    - ./client-desktop/:/usr/src/app/
+  restart: unless-stopped
   environment:
-   NODE_ENV: production
-   MONGO_URL: db:27017/
-   PORT: 8000
+   SERVER_URL: server:8000
+   VIRTUALIZED: "true"
 db:
   image: mongo:latest
   restart: unless-stopped
