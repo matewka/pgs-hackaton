@@ -24,6 +24,8 @@ To quick-start developing run `npm run start:docker` and open `localhost:4000` i
 
 You can work normally on your local files, changes will be updated.
 
+### 
+use `npm run connect:desktop:vagrant` to open run something in console in client-desktop, type exit to exit
 
 ## Server (Express + mongoose)
 # install dependencies

@@ -23,7 +23,9 @@
     "desktop:docker": "npm run compose:up -- -d --build desktop",
     "db:vagrant": "npm run vagrant -- \"cd /hackaton && npm run db:docker\"",
     "server:vagrant": "npm run vagrant -- \"cd /hackaton && npm run server:docker\"",
-    "desktop:vagrant": "npm run vagrant -- \"cd /hackaton && npm run desktop:docker\""
+    "desktop:vagrant": "npm run vagrant -- \"cd /hackaton && npm run desktop:docker\"",
+    "connect:desktop":"docker exec -i -t hackaton_desktop_1 /bin/bash",
+    "connect:desktop:vagrant":"npm run vagrant -- \"cd /hackaton && npm run connect:desktop\""
   },
   "repository": {
     "type": "git",
