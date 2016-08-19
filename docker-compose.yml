@@ -17,8 +17,8 @@ desktop:
   ports:
    - "4000:4000"
   volumes:
-   - ./client-desktop/:/usr/src/app/
-  restart: unless-stopped
+   - ./client-desktop/src:/usr/src/app/src
+  #restart: unless-stopped
   environment:
    SERVER_URL: server:8000
    VIRTUALIZED: "true"
