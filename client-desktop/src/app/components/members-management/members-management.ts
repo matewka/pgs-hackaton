@@ -17,6 +17,8 @@ import {MemberProgress} from "../members-management/member-progress/member-progr
 export class MembersManagement implements OnInit {
   members:any;
   filteredMembers:any;
+  lastMembers:any;
+  eventName:string = ' '; //TODO get the event name at initialization
 
   @ViewChild(SearchMember) searchMember:SearchMember;
 
@@ -25,16 +27,33 @@ export class MembersManagement implements OnInit {
   }
 
   ngOnInit() {
+    this._memberService.connect();
     this.getList();
+  }
+
+  ngDoCheck() {
+
   }
 
   isAccepted(status:string) {
     return status === AppSettings.MEMBER_STATUSES.ACCEPTED;
   }
 
+  registerMember(member) {
+    console.log("Registering member: " + member, member.isRegistered);
+    this._memberService.updateMember(member).subscribe(result => {
+      console.log(result);
+    });
+  }
+
   getList() {
     this._memberService.getMembers().subscribe(members => {
       this.members = this.filteredMembers = members;
+      this.members.forEach(member => {
+        if (member.registered) {
+          member.status = AppSettings.MEMBER_STATUSES.ACCEPTED;
+        }
+      });
     });
   }
 

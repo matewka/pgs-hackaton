@@ -22,6 +22,7 @@ export class PackAdmin implements OnInit {
   }
 
   ngOnInit() {
+    this._memberService.connect();
     this.getList();
     this.revertActive = false;
   }
@@ -46,8 +47,9 @@ export class PackAdmin implements OnInit {
   enableRevert() {
     this.revertActive = true;
     clearTimeout(this.revertTimeout);
-    this.revertTimeout = setTimeout(()=>this.revertActive = false,5000);
+    this.revertTimeout = setTimeout(()=>this.revertActive = false, 5000);
   }
+
   disableRevert() {
     clearTimeout(this.revertTimeout);
     this.revertActive = false;

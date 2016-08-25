@@ -1,5 +1,6 @@
 <div class="container">
     <div class="Members">
+        <h1>Event: {{eventName}}</h1>
         <search-member (changed)="filterChanged($event)"></search-member>
         <member-progress [(members)]="members"></member-progress>
         <table>
@@ -23,7 +24,7 @@
                         </span>
                     </td>
                     <td>
-                      <accept-member [member]="member"></accept-member>
+                      <accept-member [member]="member" (register)="registerMember($event)"></accept-member>
                     </td>
                 </tr>
             </tbody>
