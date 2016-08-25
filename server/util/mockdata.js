@@ -23,6 +23,7 @@ let mocks = function () {
           Event.find((e, a)=> {
             if (e) return console.error(e);
             eventId = a[0]._id;
+            console.log('Mocks: Event ID is: ' + eventId);
           });
         }
       });
@@ -38,27 +39,6 @@ let mocks = function () {
       }
     }
   });
-
-//mockMember.save((err)=> {
-//  if (err) {
-//    console.error(err);
-//  } else {
-//    console.log('added member');
-//    Member.find((e, a)=> {
-//      if (err) return console.error(e);
-//      console.log(a);
-//    });
-//  }
-//});
-//let memb;
-//Member.find((e, a)=> {
-//  if (e) return console.error(e);
-//  memb = a[0];
-//  Event.update({_id: eventId}, {members: [memb]}, {}, (er, r)=> {
-//    console.log(er);
-//
-//  });
-//});
 
 };
 

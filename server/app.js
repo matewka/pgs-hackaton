@@ -38,12 +38,13 @@ webSocketDispatcher.register('getEvent', (err, ws, params) => {
 webSocketDispatcher.register('registerByCode', (err, ws, params) => {
 
   let code = params.code;
+  let registered = params.registered;
 
-  if (!code) {
-    return ws.send(JSON.stringify({error: 'code parameter not provided'}));
+  if (!code || registered === undefined) {
+    return ws.send(JSON.stringify({error: 'code/register parameter not provided'}));
   }
 
-  MemberService.updateRegistered(code, true, (err, member) => {
+  MemberService.updateRegistered(code, registered, (err, member) => {
 
     if (err) {
       ws.send(JSON.stringify(err));
@@ -97,6 +98,15 @@ webSocketDispatcher.register('addMember', (err, ws, params) => {
       ws.send(JSON.stringify(err));
     }
     ws.send(JSON.stringify({status: 'ok', member: member}));
+  });
+});
+
+webSocketDispatcher.register('createEventMember', (err, ws, params)=> {
+  let event_id = params.event_id;
+  let member = params.member;
+
+  MemberService.createNew(event_id, member, (err, member) => {
+
   });
 });
 
